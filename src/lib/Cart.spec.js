@@ -2,6 +2,10 @@ import Cart from './Cart';
 
 describe('Cart', () => {
   let cart;
+  let product = {
+    title: 'Cooler Titanium Max',
+    price: 35190,
+  };
 
   beforeEach(() => {
     cart = new Cart();
@@ -13,15 +17,26 @@ describe('Cart', () => {
 
   it('should multiply quantity and price and receive the total amount of cart', () => {
     const item = {
-      product: {
-        title: 'Cooler Titanium Max',
-        price: 35190,
-      },
+      product,
       quantity: 2,
     };
 
     cart.addItem(item);
 
     expect(cart.getTotal()).toEqual(70380);
+  });
+
+  it('should ensure no more than one product exists at a time', () => {
+    cart.addItem({
+      product,
+      quantity: 2,
+    });
+
+    cart.addItem({
+      product,
+      quantity: 1,
+    });
+
+    expect(cart.getTotal()).toEqual(35190);
   });
 });
