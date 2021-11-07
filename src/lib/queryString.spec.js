@@ -50,4 +50,13 @@ describe('Query string to object', () => {
       name: 'italo',
     });
   });
+
+  it('should parse query string with multiple values', () => {
+    const qs = 'name=italo&skills=CSS,JS';
+
+    expect(parse(qs)).toEqual({
+      name: 'italo',
+      skills: ['CSS', 'JS'],
+    });
+  });
 });

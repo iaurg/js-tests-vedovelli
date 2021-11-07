@@ -7,6 +7,16 @@ const keyValueToString = ([key, value]) => {
 const queryString = obj => Object.entries(obj).map(keyValueToString).join('&');
 
 const parse = queryString =>
-  Object.fromEntries(queryString.split('&').map(item => item.split('=')));
+  Object.fromEntries(
+    queryString.split('&').map(item => {
+      let [key, value] = item.split('=');
+
+      if (value.indexOf(',') > -1) {
+        value = value.split(',');
+      }
+
+      return [key, value];
+    }),
+  );
 module.exports.queryString = queryString;
 module.exports.parse = parse;
