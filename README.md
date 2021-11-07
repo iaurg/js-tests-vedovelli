@@ -1,5 +1,7 @@
 # Vedovelli Course Testing Javascript Applications
 
+> The secret of tests is practice.
+
 Tests allow you to refactor with confidence.
 
 Everytime you make a implementation from any of the tests, you can be sure that it will work.
