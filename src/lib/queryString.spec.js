@@ -27,7 +27,6 @@ describe('object to queryString', () => {
         life: 'drive',
       },
     };
-    console.log(queryString(obj));
     expect(() => {
       queryString(obj);
     }).toThrowError();
