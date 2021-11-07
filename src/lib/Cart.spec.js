@@ -2,9 +2,15 @@ import Cart from './Cart';
 
 describe('Cart', () => {
   let cart;
-  let product = {
+
+  const product = {
     title: 'Cooler Titanium Max',
     price: 35190,
+  };
+
+  const product_2 = {
+    title: 'Air Max',
+    price: 10090,
   };
 
   beforeEach(() => {
@@ -38,5 +44,23 @@ describe('Cart', () => {
     });
 
     expect(cart.getTotal()).toEqual(35190);
+  });
+
+  it('should update total when add and remove product from cart', () => {
+    cart.addItem({
+      product,
+      quantity: 2,
+    });
+
+    cart.addItem({
+      product: product_2,
+      quantity: 1,
+    });
+
+    expect(cart.getTotal()).toEqual(80470);
+
+    cart.remove(product);
+
+    expect(cart.getTotal()).toEqual(10090);
   });
 });
